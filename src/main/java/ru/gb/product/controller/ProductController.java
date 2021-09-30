@@ -13,23 +13,20 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/products")
 public class ProductController {
-    private final ProductRepository repository;
-
+    private final ProductRepository productRepository;
 
     public ProductController(ProductRepository repository) {
-        this.repository = repository;
+        this.productRepository = repository;
     }
 
     @GetMapping
-
     public ResponseEntity<Iterable<Product>> findAll() {
-        return ResponseEntity.ok(repository.findAll());
+        return ResponseEntity.ok(productRepository.findAll());
     }
 
     @GetMapping(value = "/{id}")
-
     public ResponseEntity<Product> findById(@PathVariable long id) {
-        Optional<Product> maybeProduct = repository.findById((int) id);
+        Optional<Product> maybeProduct = productRepository.findById((int) id);
         if (maybeProduct.isEmpty()) {
             return ResponseEntity.noContent().build();
         }
@@ -38,17 +35,17 @@ public class ProductController {
 
     @PostMapping
     public ResponseEntity<Product> save(@RequestBody Product product) {
-        Product newlyCreated = repository.save(product);
+        Product newlyCreated = productRepository.save(product);
         return ResponseEntity.created(URI.create("/products/" + newlyCreated.getId())).body(newlyCreated);
     }
 
     @DeleteMapping(value = "/{id}")
     public Object deleteById(@PathVariable int id) {
-        Optional<Product> maybeProduct = repository.findById(id);
+        Optional<Product> maybeProduct = productRepository.findById(id);
         if (maybeProduct.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
-        repository.deleteById(id);
+        productRepository.deleteById(id);
         return ResponseEntity.ok();
     }
 
