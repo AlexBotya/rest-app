@@ -1,11 +1,9 @@
-package ru.gb.controller;
+package ru.gb.product.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.gb.domain.Product;
-import ru.gb.errorHndler.ProductError;
-import ru.gb.repository.ProductRepository;
+
 
 import java.net.URI;
 import java.util.Optional;
@@ -21,13 +19,13 @@ public class ProductController {
     }
 
     @GetMapping
-    @RequestMapping("/all")
+
     public ResponseEntity<Iterable<Product>> findAll() {
         return ResponseEntity.ok(repository.findAll());
     }
 
     @GetMapping
-    @RequestMapping("/get/{id}")
+    @RequestMapping("/{id}")
     public ResponseEntity<Product> findById(@PathVariable long id) {
         Optional<Product> maybeProduct = repository.findById((int) id);
         if (maybeProduct.isEmpty()) {
@@ -42,7 +40,7 @@ public class ProductController {
         return ResponseEntity.created(URI.create("/products/" + newlyCreated.getId())).body(newlyCreated);
     }
 
-    @DeleteMapping
+    @PostMapping
     @RequestMapping("/delete/{id}")
     public Object deleteById(@PathVariable int id) {
         Optional<Product> maybeProduct = repository.findById(id);

@@ -1,4 +1,4 @@
-package ru.gb.errorHndler;
+package ru.gb.product.errorHndler;
 
 public class ProductError {
     private final int statusCode;
