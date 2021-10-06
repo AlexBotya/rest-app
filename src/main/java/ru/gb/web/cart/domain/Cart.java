@@ -1,9 +1,9 @@
-package ru.gb.cart.domain;
+package ru.gb.web.cart.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import ru.gb.product.domain.Product;
+import ru.gb.web.product.domain.Product;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.List;

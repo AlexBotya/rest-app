@@ -1,4 +1,4 @@
-package ru.gb.product.errorHndler;
+package ru.gb.web.product.errorHndler;
 
 public class ProductError {
     private final int statusCode;

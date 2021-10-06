@@ -1,7 +1,7 @@
-package ru.gb.product.domain;
+package ru.gb.web.product.domain;
 
 import lombok.*;
-import ru.gb.cart.domain.Cart;
+import ru.gb.web.cart.domain.Cart;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;

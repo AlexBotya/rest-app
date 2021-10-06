@@ -1,12 +1,12 @@
-package ru.gb.cart.controller;
+package ru.gb.web.cart.controller;
 
 
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
-import ru.gb.cart.domain.Cart;
-import ru.gb.cart.repository.CartRepository;
-import ru.gb.product.domain.Product;
+import ru.gb.web.cart.domain.Cart;
+import ru.gb.web.cart.repository.CartRepository;
 
 import java.net.URI;
 import java.util.Optional;
@@ -14,6 +14,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/carts")
 @AllArgsConstructor
+@Secured({"ROLE_ADMIN", "ROLE_MANAGER"})
 public class CartController {
     private final CartRepository cartRepository;
 
