@@ -1,10 +1,13 @@
 package ru.gb.web.product.domain;
 
 import lombok.*;
+import lombok.experimental.FieldDefaults;
 import ru.gb.web.cart.domain.Cart;
+import ru.gb.web.category.domain.Category;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -13,16 +16,20 @@ import javax.validation.constraints.NotBlank;
 @Getter
 @EqualsAndHashCode
 @Table(name =  "products")
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Product {
     @Id
     @GeneratedValue
-    private int id;
+    int id;
     @NotBlank(message = "Product name cannot be blank")
-    private String title;
+    String title;
 
-    private int price;
+    int price;
     @ManyToOne
     @JoinColumn (name = "cart_id")
-    private Cart cart;
+    Cart cart;
+    @ManyToMany
+    List<Category> categories;
+
 
 }
